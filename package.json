@@ -1,0 +1,21 @@
+{
+  "name": "mila",
+  "version": "1.0.0",
+  "description": "Tool to manage project specific command aliases",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "mocha src/*.test.js"
+  },
+  "bin": {
+    "mila": "src/index.js"
+  },
+  "author": "Matthias Bargmann <m@bargmann.com.de>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "colors": "^1.1.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  }
+}
