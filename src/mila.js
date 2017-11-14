@@ -1,8 +1,9 @@
-const exec = require('child_process').exec;
+const proc = require('child_process');
 const colors = require('colors');
 
 
 module.exports = exports = function() {
+    "strict";
     module = {};
 
 
@@ -20,7 +21,7 @@ module.exports = exports = function() {
     module.executeCommand = function(command) {
         console.log(`executing: ${command}`);
 
-        child = exec(command, function (error, stdout, stderr) {
+        child = proc.exec(command, function (error, stdout, stderr) {
             if (stdout) {
                 console.log(stdout.green);
             }
