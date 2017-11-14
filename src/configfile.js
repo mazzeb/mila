@@ -6,7 +6,6 @@ module.exports = exports = function() {
   let _json;
 
   module.load = function(fileName) {
-      console.log(`loading: ${fileName}`);
       let data = fs.readFileSync(fileName, 'utf8');
       _json = JSON.parse(data);
   }
