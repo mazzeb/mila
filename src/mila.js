@@ -2,12 +2,12 @@ const proc = require('child_process');
 const colors = require('colors');
 
 
-module.exports = exports = function() {
+module.exports = exports = (() => {
     "strict";
     module = {};
 
 
-    module.parseCommandLine = function(argv) {
+    module.parseCommandLine = (argv) => {
         let cmd = [];
         argv.forEach((val, index) => {
             if (index > 1) {
@@ -18,7 +18,7 @@ module.exports = exports = function() {
     }
 
 
-    module.executeCommand = function(command) {
+    module.executeCommand = (command) => {
         console.log(`executing: ${command}`);
 
         child = proc.exec(command, function (error, stdout, stderr) {
@@ -37,4 +37,4 @@ module.exports = exports = function() {
     }
 
     return module;
-}();
+})();

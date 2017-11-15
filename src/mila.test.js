@@ -8,9 +8,9 @@ const subject = require("./mila.js");
 chai.use(sinonChai);
 
 
-describe("mila", function () {
+describe("mila", () => {
 
-        it("should parse a commandline", function () {
+        it("should parse a commandline", () => {
             let argv = ["node", "index.js", "do", "some", "stuff"];
 
             let result = subject.parseCommandLine(argv);
@@ -21,7 +21,7 @@ describe("mila", function () {
             expect(result[2]).to.equal("stuff");
         });
 
-        it("should execute a command", function() {
+        it("should execute a command", () => {
             let theCommand = "execute the stuff";
             let execStub = sinon.stub(proc, "exec");
 

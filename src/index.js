@@ -10,6 +10,6 @@ const CONFIG_FILENAME = path.join(HOME, CONFIGFILE)
 
 let cmdline = mila.parseCommandLine(process.argv);
 configFile.load(CONFIG_FILENAME);
-let command = configFile.getActionRef(cmdline)
+let command = configFile.getActionRef(cmdline);
 
 mila.executeCommand(command);
