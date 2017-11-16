@@ -4,7 +4,7 @@ const sinon = require("sinon");
 const sinonChai = require("sinon-chai");
 const fs = require('fs');
 
-const subject = require("./configfile.js");
+const subject = require("../src/configfile.js");
 
 chai.use(sinonChai);
 

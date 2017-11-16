@@ -16,7 +16,7 @@ module.exports = exports = (() => {
           res = res[val];
       });
       return res;
-  }
+  };
 
   return module;
 })();

@@ -4,7 +4,7 @@
   "description": "Tool to manage project specific command aliases",
   "main": "src/index.js",
   "scripts": {
-    "test": "mocha src/*.test.js"
+    "test": "mocha"
   },
   "bin": {
     "mila": "src/index.js"

@@ -3,10 +3,9 @@ const expect = require("chai").expect;
 const sinon = require("sinon");
 const sinonChai = require("sinon-chai");
 const proc = require('child_process');
-const subject = require("./mila.js");
+const subject = require("../src/mila.js");
 
 chai.use(sinonChai);
-
 
 describe("mila", () => {
 

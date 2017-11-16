@@ -17,7 +17,6 @@ module.exports = exports = (() => {
         return cmd;
     }
 
-
     module.executeCommand = (command) => {
         console.log(`executing: ${command}`);
 
