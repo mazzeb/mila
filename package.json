@@ -12,7 +12,8 @@
   "author": "Matthias Bargmann <m@bargmann.com.de>",
   "license": "Apache-2.0",
   "dependencies": {
-    "colors": "^1.1.2"
+    "colors": "^1.1.2",
+    "debug": "^3.1.0"
   },
   "devDependencies": {
     "jest-cli": "^21.2.1"

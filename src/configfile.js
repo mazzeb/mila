@@ -1,3 +1,4 @@
+const debug = require("debug")("configfile");
 
 module.exports = exports = (() => {
     "use strict";
@@ -9,6 +10,7 @@ module.exports = exports = (() => {
     }
 
     module.load = (fileName) => {
+        debug(`loading configfile ${fileName}`);
         _json = require(fileName);
     };
 

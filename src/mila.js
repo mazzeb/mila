@@ -1,4 +1,5 @@
 const proc = require('child_process');
+const debug = require('debug')('mila');
 const colors = require('colors');
 
 
@@ -24,9 +25,9 @@ module.exports = exports = (() => {
     };
 
     module.executeCommand = (command) => {
-        // console.log(`executing: ${command}`);
+        debug(`executing: ${command}`);
 
-        var p = proc.exec(command, {
+        let p = proc.exec(command, {
             env: process.env
         });
 
@@ -49,9 +50,9 @@ module.exports = exports = (() => {
 
     module.list = (o, ident) => {
         ident = ident || "";
-        for(var p in o) {
+        for(let p in o) {
             console.log(ident + p);
-            if (typeof o[p] == "object") {
+            if (typeof o[p] === "object") {
                 module.list(o[p], ident + "  ");
             }
             // if (typeof o[p] == "string") {
