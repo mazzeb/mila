@@ -1,11 +1,6 @@
-const chai = require("chai");
-const expect = require("chai").expect;
-const sinon = require("sinon");
-const sinonChai = require("sinon-chai");
 const proc = require('child_process');
-const subject = require("../src/mila.js");
 
-chai.use(sinonChai);
+const subject = require("../src/mila.js");
 
 describe("mila", () => {
 
@@ -14,20 +9,38 @@ describe("mila", () => {
 
             let result = subject.parseCommandLine(argv);
 
-            expect(result).to.have.lengthOf(3);
-            expect(result[0]).to.equal("do");
-            expect(result[1]).to.equal("some");
-            expect(result[2]).to.equal("stuff");
+            expect(result).toHaveLength(3);
+            expect(result[0]).toBe("do");
+            expect(result[1]).toBe("some");
+            expect(result[2]).toBe("stuff");
         });
 
         it("should execute a command", () => {
-            let theCommand = "execute the stuff";
-            let execStub = sinon.stub(proc, "exec");
+            // given
+            let proc = require("child_process");
+            proc.exec = jest.fn().mockReturnValue({
+                stdout: {
+                    on: jest.fn()
+                },
+                stderr: {
+                    on: jest.fn()
+                },
+                stdin: {
+                    on: jest.fn()
+                },
+                on: jest.fn()
+            });
 
+            process.stdin.pipe = jest.fn();
+            let theCommand = "execute the stuff";
+
+            // when
             subject.executeCommand(theCommand);
 
-            expect(execStub).to.have.been.calledWith("execute the stuff");
+            // then
+            expect(proc.exec.mock.calls.length).toBe(1);
+            expect(proc.exec.mock.calls[0][0]).toBe("execute the stuff");
 
-        })
+        });
     }
 );

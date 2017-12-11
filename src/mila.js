@@ -3,8 +3,8 @@ const colors = require('colors');
 
 
 module.exports = exports = (() => {
-    "strict";
-    module = {};
+    "use strict";
+    let module = {};
 
 
     module.parseCommandLine = (argv) => {
@@ -20,19 +20,25 @@ module.exports = exports = (() => {
     module.executeCommand = (command) => {
         console.log(`executing: ${command}`);
 
-        child = proc.exec(command, function (error, stdout, stderr) {
-            if (stdout) {
-                console.log(stdout.green);
-            }
-
-            if (stderr) {
-                console.log(stderr.red);
-            }
-
-            if (error != null) {
-                console.log(`exec error: ${error}`.red);
-            }
+        var p = proc.exec(command, {
+            env: process.env
         });
+
+        p.stdout.on("data", function (data) {
+            process.stdout.write(data.green);
+        });
+
+        p.stderr.on("data", function (data) {
+            process.stderr.write(data.red);
+        });
+
+        p.on("exit", function (data) {
+            process.exit(data);
+        });
+
+        process.stdin.pipe(p.stdin);
+
+
     }
 
     return module;

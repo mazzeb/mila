@@ -1,22 +1,25 @@
-const fs = require('fs');
 
 module.exports = exports = (() => {
-  module = {};
+    "use strict";
+    let module = {};
+    let _json;
 
-  let _json;
+    module._setJson = (theJson) => {
+        _json = JSON.parse(theJson);
+    }
 
-  module.load = (fileName) => {
-      let data = fs.readFileSync(fileName, 'utf8');
-      _json = JSON.parse(data);
-  };
+    module.load = (fileName) => {
+        _json = require(fileName);
+    };
 
-  module.getActionRef = (cmdline) => {
-      var res = _json;
-      cmdline.forEach(function(val) {
-          res = res[val];
-      });
-      return res;
-  };
+    module.getActionRef = (cmdline) => {
+        var res = _json;
+        cmdline.forEach(function (val) {
+            res = res[val];
+        });
+        return res;
+    };
 
-  return module;
+    return module;
 })();
+
