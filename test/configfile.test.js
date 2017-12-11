@@ -2,8 +2,6 @@ const subject = require("../src/configfile.js");
 
 describe("configfile", () => {
 
-        var readFileSync;
-
         it("should get action ref", () => {
             let theJson = '{"do": { "some" : { "stuff": "command for doing stuff"} } }';
             let cmdline = ["do", "some", "stuff"];

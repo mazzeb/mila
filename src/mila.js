@@ -8,17 +8,23 @@ module.exports = exports = (() => {
 
 
     module.parseCommandLine = (argv) => {
-        let cmd = [];
+        let ret = {};
+        ret.cmd = [];
         argv.forEach((val, index) => {
             if (index > 1) {
-                cmd.push(val);
+                if (!val.startsWith("--")) {
+                    ret.cmd.push(val);
+                } else {
+                    val = val.substring(2);
+                    ret[val] = true;
+                }
             }
         });
-        return cmd;
-    }
+        return ret;
+    };
 
     module.executeCommand = (command) => {
-        console.log(`executing: ${command}`);
+        // console.log(`executing: ${command}`);
 
         var p = proc.exec(command, {
             env: process.env
@@ -39,7 +45,21 @@ module.exports = exports = (() => {
         process.stdin.pipe(p.stdin);
 
 
-    }
+    };
+
+    module.list = (o, ident) => {
+        ident = ident || "";
+        for(var p in o) {
+            console.log(ident + p);
+            if (typeof o[p] == "object") {
+                module.list(o[p], ident + "  ");
+            }
+            // if (typeof o[p] == "string") {
+            //     console.log(ident + "  ==> " + o[p]);
+            // }
+        }
+
+    };
 
     return module;
 })();

@@ -9,10 +9,18 @@ describe("mila", () => {
 
             let result = subject.parseCommandLine(argv);
 
-            expect(result).toHaveLength(3);
-            expect(result[0]).toBe("do");
-            expect(result[1]).toBe("some");
-            expect(result[2]).toBe("stuff");
+            expect(result.cmd).toHaveLength(3);
+            expect(result.cmd[0]).toBe("do");
+            expect(result.cmd[1]).toBe("some");
+            expect(result.cmd[2]).toBe("stuff");
+        });
+
+        it("should parse a commandline with --list", () => {
+            let argv = ["node", "index.js", "--list"];
+
+            let result = subject.parseCommandLine(argv);
+
+            expect(result.list).toBe(true);
         });
 
         it("should execute a command", () => {
